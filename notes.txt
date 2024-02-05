@@ -1,0 +1,45 @@
+- to execute javascript file:
+>> node index.js 
+- setup projects:
+>> npm init
+>> npm init -y # bypass all the questions
+it will generate package.json file
+under "scripts" add command "start" with which we can we can start the project:
+>> npm start
+to export module:
+>> module.exports = myModule # to be added in the source file
+to import module:
+>> const myModule = require('./myModule.js') # to be added in the target file
+
+to install third-party packages:
+>> npm install package_name
+or
+>> npm i package_name
+to use it in the code:
+>> const someName = require('package_name') 
+to install globally:
+>> npm install package_name -g
+
+# is package
+>> npm i is
+to import it into the file:
+>> const is = require('is')
+
+# web server
+>> npm init -y
+the content of the server are written in demo/webServer/server.js
+run the server with:
+>> npm start
+
+
+# Lab: cat shelter
+>> npm init -y
+
+# nodemon to automate the server refresh
+>> npm install nodemon -D
+after that need to add:
+"start": "nodemon index.js"
+in package.json
+
+start the server:
+npm start
