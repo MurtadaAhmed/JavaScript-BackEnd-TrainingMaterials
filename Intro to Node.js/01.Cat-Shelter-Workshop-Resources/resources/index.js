@@ -1,34 +1,67 @@
 const http = require('http');
-const homeTemplate = require('./views/home/index');
-const css = require('./content/styles/site.css.js');
-const addCat = require('./views/addCat.html.js');
+const fs = require('fs');
 const port = 80;
-
+const views = {
+    home: "./views/home/index.html",
+    css: "./content/styles/site.css",
+    addCat: "./views/addCat.html",
+    addBreed: "./views/addBreed.html"
+}
 const server = http.createServer((req, res) => {
     if (req.url === "/") {
-        res.writeHead(200, {
-            'content-type': 'text/html'
-        })
-        res.write(homeTemplate);
-    } else if (req.url === "/content/styles/site.css") {
-        res.writeHead(200, {
-            'content-type': 'text/css'
-        })
-        res.write(css);
-
+        fs.readFile(views.home, {encoding: "utf-8"}, (err, data) => {
+            if (err) {
+                console.log(err);
+                return res.end();
+            }
+            res.writeHead(200, {
+                'content-type': 'text/html'
+            })
+            console.log("Heloooooooooooooo");
+            res.write(data);
+            res.end();
+            console.log("response ended")
+            
+        }) 
+        
+    } else if (req.url ==="/content/styles/site.css"){
+        fs.readFile(views.css , {encoding: "utf-8"}, (err, data) => {
+            if (err) {
+                console.log(err);
+                return res.end();
+            }
+            res.writeHead(200, {
+                'content-type': 'text/css'
+            })
+            res.write(data);
+            res.end();
+        }) 
     } else if (req.url === "/cats/add-cat") {
-        res.writeHead(200, {
-            'content-type': 'text/html'
-        })
-        res.write(addCat);
-    } else {
-        res.writeHead(404, {
-            'content-type': 'text/html'
-        })
-        res.write("<h1>404 Not Found</h1>");
+        fs.readFile(views.addCat, {encoding: "utf-8"}, (err, data) => {
+            if (err) {
+                console.log(err);
+                return res.end();
+            }
+            res.writeHead(200, {
+                'content-type': 'text/html'
+            })
+            res.write(data);
+            res.end();
+        }) 
+    } else if (req.url === "/cats/add-breed") {
+        fs.readFile(views.addBreed, {encoding: "utf-8"}, (err, data) => {
+            if (err) {
+                console.log(err);
+                return res.end();
+            }
+            res.writeHead(200, {
+                'content-type': 'text/html'
+            })
+            res.write(data);
+            res.end();
+        }) 
     }
-
-    res.end();
+    
 })
 
 server.listen(port)

@@ -1,0 +1,6 @@
+>> npm init -y
+>> npm install -D nodemon
+>> npm install express
+
+handlebars
+>> npm install express-handlebars
