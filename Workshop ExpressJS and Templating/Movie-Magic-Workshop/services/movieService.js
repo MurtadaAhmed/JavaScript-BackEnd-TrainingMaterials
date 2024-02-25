@@ -18,6 +18,24 @@ exports.getOne = (id) => {
     return movie;
 }
 
+exports.search = (title, genre, date) => {
+    let moviesSearch = movies.slice();
+
+    if(title){
+        moviesSearch = moviesSearch.filter(movie => movie.title.toLowerCase().includes(title.toLowerCase()))
+    }
+
+    if(genre){
+        moviesSearch = moviesSearch.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
+    }
+
+    if(date){
+        moviesSearch = moviesSearch.filter(movie => movie.date == date)
+    }
+
+    return moviesSearch;
+}
+
 exports.create = (movieData) => {
     movieData._id = movies.length + 1;
     movies.push(movieData);
