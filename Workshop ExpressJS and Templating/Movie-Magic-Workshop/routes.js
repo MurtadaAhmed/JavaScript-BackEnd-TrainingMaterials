@@ -3,6 +3,7 @@ const router = express.Router();
 const HomeController = require('./controllers/HomeController');
 const MovieController = require('./controllers/movieController');
 
-router.use(HomeController, MovieController);
+router.use(MovieController);
+router.use(HomeController);
 
 module.exports = router;

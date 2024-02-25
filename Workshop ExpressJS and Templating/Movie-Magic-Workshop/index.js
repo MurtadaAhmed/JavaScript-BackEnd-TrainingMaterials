@@ -5,6 +5,9 @@ const path = require('path');
 const routes = require('./routes');
 const port = 80;
 
+// setting the folder where the static files are located
+app.use(express.static('public'))
+
 app.use(routes)
 
 // Set the view engine to handlebars
@@ -13,8 +16,7 @@ app.set('view engine', 'hbs');
 
 
 
-// setting the folder where the static files are located
-app.use(express.static('public'))
+
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
